@@ -95,7 +95,6 @@ const post = () => new Promise((resolve, reject) => {
 		}
 	})
 
-	// allPostData += `\r\n--${partBoundary}--`
 	allPostData += `--${partBoundary}--`
 
 	const binaryPostData = Buffer.from(allPostData, 'binary')
@@ -111,15 +110,10 @@ const post = () => new Promise((resolve, reject) => {
 		}
 	}
 
-	console.log(options.headers)
-	console.log(allPostData)
-	// process.exit()
-
 	const req = http.request(options, res => {
-		// res.setEncoding('utf8')
-		let body = ''
+		res.setEncoding('utf8')
 
-		// console.log(res.statusCode)
+		let body = ''
 
 		res.on('data', chunk => {
 			body += chunk
